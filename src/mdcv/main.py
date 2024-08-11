@@ -27,6 +27,7 @@ def render_html_template(
         templates_dir = DEFAULT_TEMPLATES
     env = Environment(loader=FileSystemLoader(templates_dir))
     template = env.get_template(template_file)
+    # fonts = ...
     return template.render(content=html_content, config=config)
 
 
