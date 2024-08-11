@@ -3,7 +3,6 @@ description: "Software | Psychology | Data"
 connects:
   github: https://github.com/lcdunne
   linkedin: www.linkedin.com/in/lewis-c-dunne
-# template: minimal-cols
 template: minimal
 fontName: Lato
 colours:
