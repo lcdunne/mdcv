@@ -6,6 +6,7 @@ import yaml
 from jinja2 import Environment, FileSystemLoader
 
 CONFIG_FILENAME = "_config.yaml"
+DEFAULT_TEMPLATES = os.path.join(os.path.dirname(__file__), "templates")
 
 
 def read_markdown_file(markdown_file):
@@ -23,7 +24,7 @@ def render_html_template(
 ):
     if templates_dir is None:
         # Set the default templates directory to src/mdcv/templates
-        templates_dir = os.path.join(os.path.dirname(__file__), "templates")
+        templates_dir = DEFAULT_TEMPLATES
     env = Environment(loader=FileSystemLoader(templates_dir))
     template = env.get_template(template_file)
     return template.render(content=html_content, config=config)
