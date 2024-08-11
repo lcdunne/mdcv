@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ config['title'] }}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <section>
+      <div>
+        <header>
+          <h1>{{ config['title'] }}</h1>
+          <p>{{ config['description'] }}</p>
+          {% if config['connects'] %}
+          <div class="connects">
+            {% if config['connects']['github'] %}
+            <a href="{{ config['connects']['github'] }}"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+            {% endif %} {% if config['connects']['linkedin'] %}
+            <a href="{{ config['connects']['linkedin'] }}"
+              ><i class="fa-brands fa-linkedin"></i
+            ></a>
+            {% endif %} {% if config['connects']['twitter'] %}
+            <a href="{{ config['connects']['twitter'] }}"
+              ><i class="fa-brands fa-twitter"></i
+            ></a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </header>
+        {{ content }}
+      </div>
+    </section>
+  </body>
+</html>

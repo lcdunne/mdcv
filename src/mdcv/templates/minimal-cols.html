@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ config['title'] }}</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: "Lato", sans-serif;
+      }
+      .container {
+        display: flex;
+        flex-direction: row;
+        padding: 1rem;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 820px;
+        overflow-x: hidden;
+      }
+      .sidebar {
+        flex: 0 0 200px; /* Fixed width for sidebar */
+        background: rgb(240, 240, 240);
+        padding: 1rem;
+        margin-right: 1rem;
+      }
+      .connects {
+        display: flex;
+        justify-content: space-around;
+        min-width: 100px;
+        max-width: 500px;
+      }
+      .main-content {
+        flex: 1; /* Take up remaining space */
+      }
+      .profile-picture {
+        width: 150px; /* Set the desired width of the circle */
+        height: 150px; /* Set the height to match the width to maintain the circle */
+        overflow: hidden; /* Hide any overflow to maintain the circular shape */
+        border-radius: 50%; /* Make the container circular */
+      }
+
+      .profile-picture img {
+        width: 100%; /* Ensure the image fills the container */
+        height: 100%; /* Ensure the image fills the container */
+        object-fit: cover; /* Cover ensures the image covers the entire container while maintaining aspect ratio */
+      }
+
+      footer {
+        color: white;
+        background: rgb(44, 44, 45);
+        margin-top: auto;
+      }
+      footer .container {
+        text-align: center;
+      }
+      @media (min-width: 1440px) {
+        .container {
+          width: 70%;
+        }
+      }
+      @media (min-width: 1024px) {
+        .container {
+          width: 80%;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <div class="sidebar">
+          {% if config['profilePicture'] %}
+          <div class="profile-picture">
+            <img src="{{ config['profilePicture'] }}" alt="Profile Picture" />
+          </div>
+          {% endif %}
+          <header>
+            <h1>{{ config['title'] }}</h1>
+            <p>{{ config['description'] }}</p>
+            {% if config['connects'] %}
+            <div class="connects">
+              {% if config['connects']['github'] %}
+              <a href="{{ config['connects']['github'] }}"
+                ><i class="fa-brands fa-github"></i
+              ></a>
+              {% endif %} {% if config['connects']['linkedin'] %}
+              <a href="{{ config['connects']['linkedin'] }}"
+                ><i class="fa-brands fa-linkedin"></i
+              ></a>
+              {% endif %} {% if config['connects']['twitter'] %}
+              <a href="{{ config['connects']['twitter'] }}"
+                ><i class="fa-brands fa-twitter"></i
+              ></a>
+              {% endif %}
+            </div>
+            {% endif %}
+          </header>
+          <p>
+            Sidebar Content. Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Nihil mollitia voluptatum beatae similique accusantium. Harum
+            distinctio reiciendis illum iste dolore, ab tenetur odit magnam.
+            Minus, officia enim. Tempore, totam assumenda repellendus
+            consequuntur id iure? Pariatur nulla eaque deleniti consequatur
+            nobis? Vero voluptate hic, optio saepe ipsa nemo. Dolor doloribus
+            modi accusantium numquam, necessitatibus mollitia magnam at quidem
+            cumque quibusdam error blanditiis autem et, quis enim quaerat quasi
+            cupiditate accusamus quam? Explicabo aliquam velit deserunt porro
+            obcaecati veniam quibusdam, sint doloremque praesentium maxime vitae
+            sit at quia cumque earum quas numquam, similique ipsa! Nihil magni
+            iure consequatur ipsum at ab optio dolor, blanditiis amet ad
+            perferendis eum? Cupiditate explicabo ad, in odio amet quibusdam
+            consequuntur modi quia cum doloremque, suscipit vero non nam
+            corrupti sapiente eaque neque dolore delectus ex ipsam? Ipsum
+            molestias amet dolores! Modi temporibus ipsa molestiae qui
+            voluptatibus. Laboriosam ex nihil repudiandae porro, doloribus nulla
+            qui temporibus dolore?
+          </p>
+        </div>
+        <div class="main-content">{{ content }}</div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">2024</div>
+    </footer>
+  </body>
+</html>
