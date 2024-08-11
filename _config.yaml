@@ -5,3 +5,9 @@ connects:
   linkedin: www.linkedin.com/in/lewis-c-dunne
 # template: minimal-cols
 template: minimal
+fontName: Lato
+colours:
+  context: "#eceff4"
+  background: "#fffff"
+  foreground: "#434c5e"
+  highlight: "#5E81AC"

@@ -33,7 +33,6 @@ def render_html_template(
         templates_dir = DEFAULT_TEMPLATES
     env = Environment(loader=FileSystemLoader(templates_dir))
     template = env.get_template(template_file)
-    # fonts = ...
     return template.render(content=html_content, config=config)
 
 
@@ -59,7 +58,8 @@ def markdown_to_html(
     if "colours" not in config:
         config["colours"] = COLOURS
 
-    print(config)
+    if "fontName" in config and "fontUrl" not in config:
+        _, config["fontUrl"] = get_google_font_url(config["fontName"])
 
     template_file = f"{template_name}.html"
     print(template_file)
@@ -67,7 +67,7 @@ def markdown_to_html(
     html = convert_markdown_to_html(md)
     rendered_html = render_html_template(template_file, html, templates_dir, config)
     write_html_to_file(output_file, rendered_html)
-    print("Success - ", output_file)
+    print(f"Success: {output_file}")
 
 
 def get_google_font_url(font_name: str) -> tuple[str, str]:
