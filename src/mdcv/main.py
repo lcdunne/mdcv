@@ -8,6 +8,13 @@ from jinja2 import Environment, FileSystemLoader
 CONFIG_FILENAME = "_config.yaml"
 DEFAULT_TEMPLATES = os.path.join(os.path.dirname(__file__), "templates")
 
+COLOURS = {
+    "context": "#ECEFF4",  # website background
+    "background": "#FFFFF",  # text content background
+    "foreground": "#434C5E",  # text
+    "highlight": "#5E81AC",
+}
+
 
 def read_markdown_file(markdown_file):
     with open(markdown_file, "r") as f:
@@ -23,7 +30,6 @@ def render_html_template(
     template_file, html_content, templates_dir=None, config: dict | None = None
 ):
     if templates_dir is None:
-        # Set the default templates directory to src/mdcv/templates
         templates_dir = DEFAULT_TEMPLATES
     env = Environment(loader=FileSystemLoader(templates_dir))
     template = env.get_template(template_file)
@@ -49,6 +55,10 @@ def markdown_to_html(
         config = {}
 
     template_name = config.setdefault("template", "raw")
+
+    if "colours" not in config:
+        config["colours"] = COLOURS
+
     print(config)
 
     template_file = f"{template_name}.html"
@@ -58,9 +68,6 @@ def markdown_to_html(
     rendered_html = render_html_template(template_file, html, templates_dir, config)
     write_html_to_file(output_file, rendered_html)
     print("Success - ", output_file)
-
-
-# templates = {0: "template.html", 1: "minimal.html"}
 
 
 def get_google_font_url(font_name: str) -> tuple[str, str]:
