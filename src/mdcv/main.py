@@ -2,7 +2,10 @@ import os
 import urllib.parse
 
 import markdown
+import yaml
 from jinja2 import Environment, FileSystemLoader
+
+CONFIG_FILENAME = "_config.yaml"
 
 
 def read_markdown_file(markdown_file):
@@ -33,18 +36,26 @@ def write_html_to_file(output_file, html_content):
 
 def markdown_to_html(
     markdown_file: str,
-    template_file: str,
     output_file: str | None = None,
     templates_dir: str | None = None,
     config: dict | None = None,
 ):
     if output_file is None:
         output_file = os.path.splitext(markdown_file)[0] + ".html"
+
+    if config is None:
+        config = {}
+
+    template_name = config.setdefault("template", "raw")
+    print(config)
+
+    template_file = f"{template_name}.html"
+    print(template_file)
     md = read_markdown_file(markdown_file)
     html = convert_markdown_to_html(md)
     rendered_html = render_html_template(template_file, html, templates_dir, config)
     write_html_to_file(output_file, rendered_html)
-    print("Success")
+    print("Success - ", output_file)
 
 
 # templates = {0: "template.html", 1: "minimal.html"}
@@ -69,3 +80,28 @@ def get_google_font_url(font_name: str) -> tuple[str, str]:
     font_url = f"{base_url}{url_encoded_font_name}"
     return font_name, font_url
 
+
+def load_config(file_path: str = CONFIG_FILENAME) -> dict:
+    """Load a YAML file.
+
+    Arguments
+    ---------
+    file_path : str
+        The path to the YAML file to be loaded. The default is `_config.yaml`.
+
+    Returns
+    -------
+    dict
+        A dictionary representation of the YAML file content.
+    """
+    _, ext = os.path.splitext(file_path)
+    if ext not in [".yml", ".yaml"]:
+        raise ValueError(f"Invalid config file type - must be yaml but got {ext}")
+
+    with open(file_path, "r") as f:
+        return yaml.safe_load(f)
+
+
+if __name__ == "__main__":
+    config = load_config()
+    markdown_to_html("cv.md", config=config)
