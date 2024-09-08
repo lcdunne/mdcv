@@ -21,4 +21,4 @@ colours:
   highlight: "#5E81AC"
 ```
 
-Make your you have a file, e.g. `cv.md` - this gets converted to HTML.
+Make sure you have a file, e.g. `cv.md` - this gets converted to HTML.
