@@ -19,5 +19,3 @@ The Egg Fried Rice was a delightful surprise, with each grain of rice cooked to 
 #### The Verdict
 
 This Chinese feast was a culinary delight, with each dish expertly prepared and presented. The combination of flavors, textures, and aromas created a truly unforgettable dining experience. If you're a fan of Chinese cuisine, this restaurant is definitely worth a visit.
-
-![Delicious Chinese Food](https://example.com/chinese-food.jpg)
